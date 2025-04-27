@@ -104,29 +104,44 @@
     const yay = document.getElementById('yay');
     const yesBtn = document.getElementById('yes');
     const noBtn = document.getElementById('no');
-
+  
     let noClickCount = 0; // นับจำนวนครั้งที่กด No
-
+    let alertCount = 0;   // นับจำนวนครั้งที่แจ้งเตือน
+  
     envelope.addEventListener('click', () => {
       envelope.style.display = 'none';
       mailText.style.display = 'none';
       letter.style.display = 'block';
     });
-
+  
     yesBtn.addEventListener('click', () => {
       letter.style.display = 'none';
       yay.style.display = 'block';
-      // เพิ่มแสดงว่ากด No ไปกี่ครั้ง
-      yay.innerHTML = `Yeyyyyyy &lt;3<br><br>You clicked No ${noClickCount} times!`;
+      yay.innerHTML = `Yeyyyyyy &lt;3<br><br>You clicked No ${noClickCount} times!<br>Today I'll kiss you ${noClickCount} times! 💋`;
     });
-
+  
     noBtn.addEventListener('click', () => {
-      noClickCount++; // เพิ่มตัวนับทุกครั้งที่กด No
+      noClickCount++;
       noBtn.style.position = 'absolute';
       noBtn.style.top = Math.random() * 300 + 'px';
       noBtn.style.left = Math.random() * 300 + 'px';
+  
+      if (noClickCount === 15) {
+        alert('แฮ้ ยอมซักทีเถอะน่าาาาาาา 😝');
+        alertCount++;
+      } else if (noClickCount > 15 && (noClickCount - 15) % 5 === 0) {
+        alertCount++;
+        if (alertCount > 5) {
+          alert(`ฮึ้ยยย! กดไป ${noClickCount} ครั้งแล้วนะ! 🤨`);
+        } else if (noClickCount >= 40) {
+          alert(`ฉันจะร้องไห้แล้วนะ กด NO ไป ${noClickCount} ครั้งแล้ว 😭`);
+        } else {
+          alert(`ยอมหน่อยน้า~ กด NO ไป ${noClickCount} ครั้งแล้ว! 😜`);
+        }
+      }
     });
-</script>
+  </script>
+  
 
 </body>
 </html>
