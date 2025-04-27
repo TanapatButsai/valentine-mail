@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine Mail</title>
+  <style>
+    body {
+      background-color: #f9cfc8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Comic Sans MS', sans-serif;
+      overflow: hidden;
+    }
+    #envelope, #letter, #yay {
+      cursor: pointer;
+    }
+    #envelope {
+      width: 900px;
+      animation: bounce 1.5s infinite;
+    }
+    #letter, #yay {
+      display: none;
+      background: #fff9f6;
+      padding: 70px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 15px rgba(0,0,0,0.25);
+      text-align: center;
+      position: relative;
+      font-size: 30px;
+    }
+    #mail-text {
+      margin-top: 20px;
+      font-size: 48px;
+      color: #444;
+      animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+    .button {
+      padding: 12px 25px;
+      margin: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #yes {
+      background-color: #d4f8d4;
+    }
+    #no {
+      background-color: #f8d4d4;
+      position: relative;
+    }
+    #yay {
+      font-size: 32px;
+      color: #ff6b81;
+    }
+
+    /* Animation เด้งดึ๋งๆ */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Animation ข้อความกระพริบเบาๆ */
+    @keyframes fadeIn {
+      0% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <img id="envelope" src="latter.png" alt="Envelope">
+  <div id="mail-text">You got mail!</div>
+
+  <div id="letter">
+    <p>Dear, Dream</p>
+    <p>Will you be my valentine?</p>
+    <p>Love, Mao</p>
+    <button id="yes" class="button">Yes</button>
+    <button id="no" class="button">No</button>
+  </div>
+
+  <div id="yay">
+    Yeyyyyyy &lt;3
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const mailText = document.getElementById('mail-text');
+    const letter = document.getElementById('letter');
+    const yay = document.getElementById('yay');
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+
+    let noClickCount = 0; // นับจำนวนครั้งที่กด No
+
+    envelope.addEventListener('click', () => {
+      envelope.style.display = 'none';
+      mailText.style.display = 'none';
+      letter.style.display = 'block';
+    });
+
+    yesBtn.addEventListener('click', () => {
+      letter.style.display = 'none';
+      yay.style.display = 'block';
+      // เพิ่มแสดงว่ากด No ไปกี่ครั้ง
+      yay.innerHTML = `Yeyyyyyy &lt;3<br><br>You clicked No ${noClickCount} times!`;
+    });
+
+    noBtn.addEventListener('click', () => {
+      noClickCount++; // เพิ่มตัวนับทุกครั้งที่กด No
+      noBtn.style.position = 'absolute';
+      noBtn.style.top = Math.random() * 300 + 'px';
+      noBtn.style.left = Math.random() * 300 + 'px';
+    });
+</script>
+
+</body>
+</html>
